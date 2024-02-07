@@ -21,6 +21,20 @@ class SignUpFragment : Fragment() {
         binding.clickHereToSignup.setOnClickListener {
             findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
         }
+
+        binding.signup.setOnClickListener {
+            val phNumber = binding.phoneNumber.text.toString()
+            val name = binding.name.text.toString()
+            val password = binding.password.text.toString()
+            val confirmPassword = binding.confirmPassword.text.toString()
+
+            if(phNumber.isEmpty() && name.isEmpty() && password.isEmpty() && confirmPassword.isEmpty()) {
+                binding.phoneNumber.error = "Field cannot be empty"
+                binding.name.error = "name cannot be empty"
+                binding.password.error = "password cannot be empty"
+                binding.confirmPassword.error = "confirm password cannot be empty"
+            }
+        }
         return binding.root
     }
 }
