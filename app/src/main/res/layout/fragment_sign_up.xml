@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,14 +9,36 @@
     android:background="@color/mainColor"
     tools:context=".fragments.signup.SignUpFragment">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="Create a \n New Account"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+
+        app:layout_constraintBottom_toTopOf="@+id/neumorphCardView5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <soup.neumorphism.NeumorphCardView
+        android:id="@+id/neumorphCardView5"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/neumorphCardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:neumorph_lightSource="rightBottom"
+        app:neumorph_shadowColorLight="#dfecff"
+        app:neumorph_shadowElevation="6dp">
 
         <EditText
             android:id="@+id/phoneNumber"
@@ -36,6 +58,9 @@
         android:id="@+id/neumorphCardView"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        app:neumorph_shadowElevation="6dp"
+        app:neumorph_shadowColorLight="#dfecff"
+        app:neumorph_lightSource="rightBottom"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/neumorphCardView2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -59,6 +84,9 @@
         android:id="@+id/neumorphCardView2"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        app:neumorph_shadowElevation="6dp"
+        app:neumorph_shadowColorLight="#dfecff"
+        app:neumorph_lightSource="rightBottom"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@+id/neumorphCardView3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,6 +110,9 @@
         android:id="@+id/neumorphCardView3"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        app:neumorph_shadowElevation="6dp"
+        app:neumorph_shadowColorLight="#dfecff"
+        app:neumorph_lightSource="rightBottom"
         android:layout_marginBottom="33dp"
         app:layout_constraintBottom_toTopOf="@+id/signup"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,6 +136,9 @@
         android:id="@+id/signup"
         android:layout_width="180dp"
         android:layout_height="80dp"
+        app:neumorph_shadowElevation="6dp"
+        app:neumorph_shadowColorLight="#dfecff"
+        app:neumorph_lightSource="rightBottom"
         android:layout_marginBottom="60dp"
         android:gravity="center"
         android:text="Sign-Up"
@@ -136,6 +170,7 @@
         android:textColor="#b79ced"
         app:layout_constraintStart_toEndOf="@+id/textView" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
