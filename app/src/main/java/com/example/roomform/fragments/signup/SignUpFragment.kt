@@ -1,8 +1,6 @@
 package com.example.roomform.fragments.signup
 
 import android.os.Bundle
-import android.text.TextUtils
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -34,7 +32,6 @@ class SignUpFragment : Fragment() {
         binding.clickHereToSignup.setOnClickListener {
             findNavController().navigate(R.id.action_signUpFragment_to_signInFragment)
         }
-
         binding.signup.setOnClickListener {
             val phNumber = binding.phoneNumber.text.toString()
             val name = binding.name.text.toString()
@@ -43,36 +40,48 @@ class SignUpFragment : Fragment() {
 
             if (phNumber.isEmpty() || name.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
                 handleEmptyFields(phNumber, name, password, confirmPassword)
+            } else if (confirmPassword != password) {
+                binding.confirmPassword.requestFocus()
+                binding.confirmPassword.error = "Password did not match"
             } else if (!password.matches(passwordMatcher)) {
-                binding.password.error = "Password must have at least 1 Uppercase, 1 Lowercase, 1 Special character, 1 Special symbol."
-            } else if (password != confirmPassword) {
-                binding.confirmPassword.error = "Passwords do not match."
-            } else {
+                binding.password.requestFocus()
+                binding.password.error = "Password must have at least 1 Uppercase, 1 Lowercase, 1 Special character."
+            }
+            else {
                 handleSignUp(phNumber, name, password)
             }
         }
         return binding.root
     }
-
     private fun handleEmptyFields(phNumber: String, name: String, password: String, confirmPassword: String) {
-        if (phNumber.isEmpty()) binding.phoneNumber.error = "Field cannot be empty"
-        if (name.isEmpty()) binding.name.error = "Name cannot be empty"
-        if (password.isEmpty()) binding.password.error = "Password cannot be empty"
-        if (confirmPassword.isEmpty()) binding.confirmPassword.error = "Confirm password cannot be empty"
-
-        if (phNumber.length == 10) {
-            Log.e("MainActivity", "Valid")
-        } else {
-            binding.phoneNumber.error = "Invalid number"
+        if (phNumber.isEmpty()) {
+            binding.phoneNumber.error = "Field cannot be empty"
+            binding.phoneNumber.requestFocus()
+        }
+        if (name.isEmpty()) {
+            binding.name.error = "Name cannot be empty"
+            binding.name.requestFocus()
+        }
+        if (password.isEmpty()) {
+            binding.password.error = "Password cannot be empty"
+            binding.password.requestFocus()
+        }
+        if (confirmPassword.isEmpty()) {
+            binding.confirmPassword.error = "Confirm password cannot be empty"
+            binding.confirmPassword.requestFocus()
+        }
+        if (phNumber.length != 10) {
+            binding.phoneNumber.error = "Invalid Phone Number"
+            binding.phoneNumber.requestFocus()
         }
     }
-
     private fun handleSignUp(phNumber: String, name: String, password: String) {
         CoroutineScope(Dispatchers.IO).launch {
             try {
                 if (checkPhoneNumber(phNumber)) {
                     withContext(Dispatchers.Main) {
                         binding.phoneNumber.error = "Phone number already registered. Try a different number."
+                        binding.phoneNumber.requestFocus()
                     }
                 } else {
                     if (inputCheck(phNumber, name, password)) {

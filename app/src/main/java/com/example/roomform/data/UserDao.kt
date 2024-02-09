@@ -1,5 +1,6 @@
 package com.example.roomform.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
@@ -13,4 +14,7 @@ interface UserDao {
 
     @Query("select * from user where number = :number")
     suspend fun getUserByPhoneNumber(number: String) : User?
+
+    @Query("select * from user")
+    fun getAllData() : List<User>
 }

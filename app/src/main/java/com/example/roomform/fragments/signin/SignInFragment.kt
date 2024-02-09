@@ -34,8 +34,22 @@ class SignInFragment : Fragment() {
             val phoneNumber = binding.signInPhoneNumber.text.toString()
             val password = binding.signInPassword.text.toString()
 
-            if(phoneNumber.isEmpty()) binding.signInPhoneNumber.error = "phone number cannot be empty"
-            if(password.isEmpty()) binding.signInPassword.error = "password cannot be empty"
+            if(phoneNumber.isEmpty()) {
+                binding.signInPhoneNumber.error = "phone number cannot be empty"
+                binding.signInPhoneNumber.requestFocus()
+            }
+            if(password.isEmpty()) {
+                binding.signInPassword.error = "password cannot be empty"
+                binding.signInPassword.requestFocus()
+            }
+
+            CoroutineScope(Dispatchers.IO).launch {
+                if(checkPhoneNumber(phoneNumber))
+                    withContext(Dispatchers.Main) {
+                        binding.signInPhoneNumber.error = "User not Found"
+                        binding.signInPhoneNumber.requestFocus()
+                    }
+            }
 
             if(phoneNumber.isNotEmpty() && password.isNotEmpty()) {
                 CoroutineScope(Dispatchers.IO).launch {
@@ -46,7 +60,6 @@ class SignInFragment : Fragment() {
                             findNavController().navigate(R.id.action_signInFragment_to_welcomeFragment)
                             Toast.makeText(requireContext(),"Sign-In successful",Toast.LENGTH_SHORT).show()
                         } else {
-                            binding.signInPhoneNumber.error = "Invalid Number"
                             binding.signInPassword.error = "Invalid password"
                         }
                     }
@@ -54,5 +67,8 @@ class SignInFragment : Fragment() {
             }
         }
         return binding.root
+    }
+    private suspend fun checkPhoneNumber(phoneNumber: String): Boolean {
+        return database.userDao().getUserByPhoneNumber(phoneNumber) != null
     }
 }

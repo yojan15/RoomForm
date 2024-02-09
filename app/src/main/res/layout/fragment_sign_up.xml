@@ -32,6 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginBottom="10dp"
+        app:neumorph_shapeType="pressed"
         app:layout_constraintBottom_toTopOf="@+id/neumorphCardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -58,6 +59,7 @@
         android:id="@+id/neumorphCardView"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        app:neumorph_shapeType="pressed"
         app:neumorph_shadowElevation="6dp"
         app:neumorph_shadowColorLight="#dfecff"
         app:neumorph_lightSource="rightBottom"
@@ -84,6 +86,7 @@
         android:id="@+id/neumorphCardView2"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        app:neumorph_shapeType="pressed"
         app:neumorph_shadowElevation="6dp"
         app:neumorph_shadowColorLight="#dfecff"
         app:neumorph_lightSource="rightBottom"
@@ -110,6 +113,7 @@
         android:id="@+id/neumorphCardView3"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        app:neumorph_shapeType="pressed"
         app:neumorph_shadowElevation="6dp"
         app:neumorph_shadowColorLight="#dfecff"
         app:neumorph_lightSource="rightBottom"
@@ -138,13 +142,15 @@
         android:layout_height="80dp"
         app:neumorph_shadowElevation="6dp"
         app:neumorph_shadowColorLight="#dfecff"
+        android:clickable="true"
         app:neumorph_lightSource="rightBottom"
         android:layout_marginBottom="60dp"
         android:gravity="center"
         android:text="Sign-Up"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:focusable="true" />
 
     <TextView
         android:id="@+id/textView"
